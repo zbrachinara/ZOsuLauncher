@@ -12,7 +12,7 @@ Window {
     color: "gray"
 
     Image {
-        id: image
+        id: osu_background
         source: "osu-resources/osu.Game.Resources/Textures/Menu/menu-background-1.jpg"
         fillMode: Image.PreserveAspectFit
         width: parent.width
@@ -32,7 +32,7 @@ Window {
     }
 
     Flickable {
-        id: flickable
+        id: container
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.top: parent.top
@@ -43,7 +43,7 @@ Window {
 
         flickableDirection: Flickable.VerticalFlick
         boundsBehavior: Flickable.OvershootBounds
-        maximumFlickVelocity: 1000
+//        maximumFlickVelocity: 1000
 
         Rectangle {
 
@@ -64,9 +64,9 @@ Window {
     Rectangle {
         id: scrollbar
         anchors.right: parent.right
-        y: flickable.visibleArea.yPosition * flickable.height
+        y: container.visibleArea.yPosition * container.height
         width: 10
-        height: flickable.visibleArea.heightRatio * flickable.height
+        height: container.visibleArea.heightRatio * container.height
 
         color: "black"
         opacity: 0.5
@@ -85,6 +85,11 @@ Window {
         Button {
             id: launch
             color: "#6644cc"
+
+            buttonText: "osu!"
+            buttonAction: function() {
+                console.debug("hello world")
+            }
         }
 
         Button {
