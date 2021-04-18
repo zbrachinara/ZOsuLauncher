@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+QRC="./backgrounds.qrc"
+
+echo '<!DOCTYPE RCC>' > $QRC
+echo '<RCC version="1.0">' >> $QRC
+echo '  <qresources>' >> $QRC
+
+echo '  </qresources>' >> $QRC
+echo '</RCC>' > $QRC

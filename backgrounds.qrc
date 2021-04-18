@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/background">
+        <file alias="special"> osu-resources/osu.Game.Resources/Textures/Backgrounds </file>
+        <file alias="menu"> osu-resources/osu.Game.Resources/Textures/Menu </file>  
+    </qresource>
+</RCC>
