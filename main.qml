@@ -3,7 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
 
 Window {
-    id: window
+    id: z_osu_launcher
     width: 600
     height: 640
     visible: true
@@ -43,7 +43,7 @@ Window {
 
         flickableDirection: Flickable.VerticalFlick
         boundsBehavior: Flickable.OvershootBounds
-//        maximumFlickVelocity: 1000
+        maximumFlickVelocity: 1000
 
         Rectangle {
 
