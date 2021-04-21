@@ -19,7 +19,7 @@ Rectangle {
         color: "white"
         font.family: "Aller"
         font.bold: true
-        font.pointSize: 30
+        font.pointSize: 20
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter

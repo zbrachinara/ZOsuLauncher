@@ -1,11 +1,17 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include <curl/curl.h>
+
+#include "appmanager.h"
+
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
+
+    curl_global_init(CURL_GLOBAL_ALL);
 
     QGuiApplication app(argc, argv);
 
@@ -18,5 +24,16 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    return app.exec();
+    // PUT STUFF TO RUN BEFORE THE APP STARTS HERE
+
+    AppManager::init();
+    AppManager::check_updates();
+
+    // END (PUT STUFF TO RUN ... HERE)
+
+    int return_code = app.exec();
+
+    curl_global_cleanup();
+
+    return return_code;
 }

@@ -48,7 +48,7 @@ Window {
         Rectangle {
 
             color: "gray"
-            border.color:black
+            border.color: "black"
             border.width:5
 
             id: content
@@ -95,6 +95,9 @@ Window {
         Button {
             id: update
             color: "#eeaa00"
+
+            buttonText: "Check for Updates"
+
         }
 
     }
