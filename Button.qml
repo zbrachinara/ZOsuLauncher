@@ -7,6 +7,7 @@ Rectangle {
     Layout.fillWidth: true
 
     opacity: 0.9
+    radius: 10
 
     property alias buttonText: buttonText.text
     property var buttonAction: function() {

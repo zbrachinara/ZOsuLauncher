@@ -73,30 +73,53 @@ Window {
 
     }
 
-    RowLayout {
-        id: actions
+    Rectangle {
+
+        color: "black"
+        opacity: 0.4
+
+        height: 80
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+    }
+
+    Rectangle {
+
         height: 80
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
-        spacing: 0
+        color: "transparent";
 
-        Button {
-            id: launch
-            color: "#6644cc"
+        RowLayout {
 
-            buttonText: "osu!"
-            buttonAction: function() {
-                console.debug("hello world")
+            property real space: 5
+
+            anchors.fill: parent;
+            anchors.margins: space;
+            id: actions
+
+            spacing: space
+
+            Button {
+                id: launch
+                color: "#6644cc"
+
+                buttonText: "osu!"
+                buttonAction: function() {
+                    console.debug("hello world")
+                }
             }
-        }
 
-        Button {
-            id: update
-            color: "#eeaa00"
+            Button {
+                id: update
+                color: "#eeaa00"
 
-            buttonText: "Check for Updates"
+                buttonText: "Check Updates"
+
+            }
 
         }
 
