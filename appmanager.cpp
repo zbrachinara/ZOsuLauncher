@@ -27,6 +27,7 @@ void AppManager::init(void) {
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "ZOsuLauncher/1.0");
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+        curl_easy_setopt(curl, CURLOPT_XFERINFOFUNCTION, progress_func);
     } else {
         cout << "failed to init curl" << endl;
     }
@@ -54,6 +55,7 @@ bool AppManager::check_updates(void) {
     curl_easy_setopt(curl, CURLOPT_URL, "https://api.github.com/repos/ppy/osu/releases/latest");
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_string);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &github_request);
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
 
     int res = curl_easy_perform(curl);
 
@@ -99,6 +101,7 @@ int AppManager::update(void) {
     curl_easy_setopt(curl, CURLOPT_URL, &(exec_source[0]));
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_file);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, exec_file);
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0);
     int res = curl_easy_perform(curl);
 
     if (res == CURLE_OK) {
@@ -126,6 +129,13 @@ size_t AppManager::write_file(void* contents, size_t size, size_t nmemb, FILE* u
     size_t written = fwrite(contents, size, nmemb, userp);
     return written;
 
+}
+
+int AppManager::progress_func(void* clientp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow) {
+
+    qDebug() << ((double) dlnow) / ((double) dltotal);
+
+    return CURL_PROGRESSFUNC_CONTINUE;
 }
 
 void AppManager::init_working_dir(void) {

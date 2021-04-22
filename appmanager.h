@@ -25,6 +25,7 @@ private:
 
     static size_t write_string(void*, size_t, size_t, void*);
     static size_t write_file(void*, size_t, size_t, FILE*);
+    static int progress_func(void*, curl_off_t, curl_off_t, curl_off_t, curl_off_t);
 
     static void init_working_dir(void);
 
