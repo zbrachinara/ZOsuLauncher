@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 
     int return_code = app.exec();
 
+    AppManager::cleanup();
     curl_global_cleanup();
 
     return return_code;

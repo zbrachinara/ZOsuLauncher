@@ -17,6 +17,7 @@ LIBS += \
 
 SOURCES += \
         appmanager.cpp \
+        interface.cpp \
         main.cpp
 
 RESOURCES += \
@@ -36,5 +37,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    appmanager.h
+    appmanager.h \
+    interface.h
     rapidjson.h

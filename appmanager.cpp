@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include <iostream>
 #include <fstream>
 #include <experimental/filesystem>
@@ -17,6 +19,8 @@ string AppManager::w_directory;
 
 void AppManager::init(void) {
 
+    qDebug() << "running init()";
+
     w_directory = (std::string) getenv("HOME") + "/.local/share/ZOsuLauncher";
 
     curl = curl_easy_init();
@@ -35,11 +39,15 @@ void AppManager::init(void) {
 
 void AppManager::cleanup(void) {
 
+    qDebug() << "running cleanup()";
+
     curl_easy_cleanup(curl);
 
 }
 
 bool AppManager::check_updates(void) {
+
+    qDebug() << "running check_updates()";
 
     string github_request;
 
@@ -49,6 +57,7 @@ bool AppManager::check_updates(void) {
 
     int res = curl_easy_perform(curl);
 
+    qDebug() << &(github_request[0]);
     github_latest.Parse(&(github_request[0]));
 
     if (res != CURLE_OK) {
@@ -58,7 +67,7 @@ bool AppManager::check_updates(void) {
     string latest_version = github_latest["tag_name"].GetString();
     string current_version = config["version"].GetString();
     if (latest_version.compare(current_version) != 0) {
-        // update();
+         update();
     }
 
     ofstream tmpa(w_directory + "/config.json");
@@ -71,6 +80,8 @@ bool AppManager::check_updates(void) {
 }
 
 int AppManager::update(void) {
+
+    qDebug() << "running update()";
 
     string target = "osu.AppImage";
     string exec_path = w_directory + "/osu.AppImage";
@@ -97,6 +108,8 @@ int AppManager::update(void) {
         config["version"].Swap(new_ver);
     }
 
+    fclose(exec_file);
+
     return res;
 
 }
@@ -116,6 +129,8 @@ size_t AppManager::write_file(void* contents, size_t size, size_t nmemb, FILE* u
 }
 
 void AppManager::init_working_dir(void) {
+
+    qDebug() << "running init_working_dir()";
 
     if (!fs::exists(w_directory)) {
         fs::create_directory(w_directory);
