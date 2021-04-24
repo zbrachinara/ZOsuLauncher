@@ -117,7 +117,7 @@ ApplicationWindow {
 
             spacing: space
 
-            Button {
+            MainButton {
 
                 objectName: "run_osu"
 
@@ -131,7 +131,7 @@ ApplicationWindow {
                 }
             }
 
-            Button {
+            MainButton {
 
                 objectName: "update_osu"
 
