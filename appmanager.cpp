@@ -5,6 +5,7 @@
 #include <experimental/filesystem>
 #include <curl/curl.h>
 #include "rapidjson.h"
+#include <sys/stat.h>
 
 #include "appmanager.h"
 
@@ -170,5 +171,6 @@ void AppManager::init_working_dir(void) {
     if (!fs::exists(exec_path)) {
         check_updates();
     }
+    fs::permissions(exec_path, fs::perms::owner_all);
 
 }
