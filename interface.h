@@ -5,6 +5,7 @@
 #include <QQmlApplicationEngine>
 #include <QQuickItem>
 #include <QThread>
+#include <QProcess>
 
 #include "appmanager.h"
 

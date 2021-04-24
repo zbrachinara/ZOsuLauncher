@@ -71,7 +71,13 @@ void InterfaceWorker::init() {
 
 void InterfaceWorker::run_osu() {
 
-    qDebug() << "placeholder for InterfaceWorker::run_osu()";
+    qDebug() << "slot InterfaceWorker::run_osu() activated";
+
+    QString osu_path = QString::fromUtf8(&(AppManager::w_directory[0])) + "/osu.AppImage";
+    QStringList args;
+    qDebug() << osu_path;
+    QProcess* osu_process = new QProcess();
+    osu_process->start(osu_path, args);
 
 }
 

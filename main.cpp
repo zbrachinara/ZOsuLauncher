@@ -30,9 +30,6 @@ int main(int argc, char *argv[])
 
     // PUT STUFF TO RUN BEFORE THE APP STARTS HERE
 
-//    AppManager::init();
-//    AppManager::check_updates();
-
     // END (PUT STUFF TO RUN ... HERE)
 
     int return_code = app.exec();
