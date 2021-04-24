@@ -23,7 +23,8 @@ SOURCES += \
 RESOURCES += \
     qml.qrc \
     osu-resources/osu.Game.Resources/Textures/Backgrounds/ \
-    osu-resources/osu.Game.Resources/Textures/Menu
+    osu-resources/osu.Game.Resources/Textures/Menu/ \
+    osu-resources/osu.Game.Resources/Textures/Icons/
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

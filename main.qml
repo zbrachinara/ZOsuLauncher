@@ -37,15 +37,40 @@ ApplicationWindow {
 
     }
 
+    Image {
+        id: settings_button
+        source: "osu-resources/osu.Game.Resources/Textures/Icons/Hexacons/settings.png"
+
+        fillMode: Image.PreserveAspectFit
+        width: 50
+
+        anchors {
+            right: parent.right
+            top: parent.top
+
+            rightMargin: 10
+            topMargin: 10
+        }
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: {
+                console.debug("settings button clicked")
+            }
+
+        }
+    }
+
     Flickable {
         id: container
-        anchors.right: parent.right
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        anchors {
+            fill: parent
+            topMargin: 200
+        }
 
-        contentWidth: content.width
-        contentHeight: content.height + 200
+        contentWidth: width
+        contentHeight: content.height
 
         flickableDirection: Flickable.VerticalFlick
         boundsBehavior: Flickable.OvershootBounds
@@ -55,13 +80,21 @@ ApplicationWindow {
 
             color: "gray"
             border.color: "black"
-            border.width:5
+            border.width: 2
 
             id: content
             anchors.top: parent.top
-            anchors.topMargin: 200
             width: parent.parent.width
             height:1000
+
+            Text {
+                text: "bruh"
+                anchors {
+                    bottom: parent.bottom
+                    left: parent.left
+
+                }
+            }
 
         }
 
@@ -70,12 +103,12 @@ ApplicationWindow {
     Rectangle {
         id: scrollbar
         anchors.right: parent.right
-        y: container.visibleArea.yPosition * container.height
-        width: 10
-        height: container.visibleArea.heightRatio * container.height
+        y: container.visibleArea.yPosition * parent.height
+        height: container.visibleArea.heightRatio * parent.height
+        width: 5
 
         color: "black"
-        opacity: 0.5
+        opacity: 0.4
 
     }
 
