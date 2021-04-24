@@ -12,7 +12,7 @@ class AppManager {
 public:
     AppManager() = delete;
 
-    static void init(void);
+    static void init(func, void*);
     static void cleanup(void);
 
     static bool check_updates(void);

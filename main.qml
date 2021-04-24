@@ -81,6 +81,8 @@ ApplicationWindow {
 
     Rectangle {
 
+        id: button_bar_background
+
         color: "black"
         opacity: 0.4
 
@@ -145,6 +147,24 @@ ApplicationWindow {
             }
 
         }
+
+    }
+
+    Rectangle {
+
+        objectName: "progress_bar"
+        id: progress_bar
+
+        property real full: 0
+
+        width: full * parent.width
+        height: 10
+
+        anchors.bottom: main_button_bar.top
+        anchors.left: parent.left
+
+        color: "yellow"
+        opacity: button_bar_background.opacity
 
     }
 

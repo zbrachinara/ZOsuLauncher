@@ -3,12 +3,14 @@
 
 Interface::Interface(QQmlApplicationEngine* engine, QObject* parent) : QObject(parent) {
 
-    InterfaceWorker* worker = new InterfaceWorker(engine);
+    InterfaceWorker* worker = new InterfaceWorker();
     worker->moveToThread(&interface_thread);
 
     QObject* window = engine->rootObjects().first();
     QQuickItem* button_bar = window->findChild<QQuickItem*>("main_button_bar")->childItems().first();
     progress_bar = window->findChild<QQuickItem*>("progress_bar");
+
+    qRegisterMetaType<curl_off_t>("curl_off_t");
 
     QObject::connect(
                 &interface_thread, SIGNAL(started()),
@@ -31,6 +33,11 @@ Interface::Interface(QQmlApplicationEngine* engine, QObject* parent) : QObject(p
     );
 
     QObject::connect(
+                worker, SIGNAL(update_progress(curl_off_t, curl_off_t)),
+                this, SLOT(update_progress(curl_off_t, curl_off_t))
+    );
+
+    QObject::connect(
                 &interface_thread, SIGNAL(finished()),
                 worker, SLOT(deleteLater())
     );
@@ -39,13 +46,26 @@ Interface::Interface(QQmlApplicationEngine* engine, QObject* parent) : QObject(p
 
 }
 
+void Interface::update_progress(curl_off_t dltotal, curl_off_t dlnow) {
+    qDebug() << "called Interface::update_progress(" << dltotal << "," << dlnow << ")";
+
+    progress_bar->setProperty("full", (double) dlnow / (double) dltotal);
+    progress_bar->setProperty("visible", !(dltotal == dlnow || dlnow == 0));
+}
+
 InterfaceWorker::InterfaceWorker(QObject* parent) : QObject(parent) {
+
+}
+
+void InterfaceWorker::update_callback(void* qobject, curl_off_t dltotal, curl_off_t dlnow, curl_off_t, curl_off_t) {
+
+    emit static_cast<InterfaceWorker*>(qobject)->update_progress(dltotal, dlnow);
 
 }
 
 void InterfaceWorker::init() {
 
-    AppManager::init();
+    AppManager::init(&InterfaceWorker::update_callback, this);
 
 }
 

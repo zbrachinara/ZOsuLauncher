@@ -17,7 +17,7 @@ Document AppManager::github_latest;
 Document AppManager::config;
 string AppManager::w_directory;
 
-void AppManager::init(void) {
+void AppManager::init(func progress_callback, void* obj) {
 
     qDebug() << "running init()";
 
@@ -27,7 +27,8 @@ void AppManager::init(void) {
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "ZOsuLauncher/1.0");
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
-        curl_easy_setopt(curl, CURLOPT_XFERINFOFUNCTION, progress_func);
+        curl_easy_setopt(curl, CURLOPT_XFERINFOFUNCTION, progress_callback);
+        curl_easy_setopt(curl, CURLOPT_XFERINFODATA, obj);
     } else {
         cout << "failed to init curl" << endl;
     }
