@@ -1,9 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QThread>
 
 #include <curl/curl.h>
 
 #include "appmanager.h"
+#include "interface.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,10 +26,12 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    Interface interface(&engine);
+
     // PUT STUFF TO RUN BEFORE THE APP STARTS HERE
 
-    AppManager::init();
-    AppManager::check_updates();
+//    AppManager::init();
+//    AppManager::check_updates();
 
     // END (PUT STUFF TO RUN ... HERE)
 

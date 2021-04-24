@@ -1,8 +1,14 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.5
 
-Window {
+ApplicationWindow {
+
+    signal windowclose();
+
+    onClosing: windowclose();
+
     id: z_osu_launcher
     width: 600
     height: 640
@@ -86,6 +92,9 @@ Window {
 
     Rectangle {
 
+        objectName: "main_button_bar"
+        id: main_button_bar
+
         height: 80
         anchors.left: parent.left
         anchors.right: parent.right
@@ -94,6 +103,9 @@ Window {
         color: "transparent";
 
         RowLayout {
+
+            signal run_signal();
+            signal update_signal();
 
             property real space: 5
 
@@ -104,20 +116,31 @@ Window {
             spacing: space
 
             Button {
+
+                objectName: "run_osu"
+
                 id: launch
                 color: "#6644cc"
-
                 buttonText: "osu!"
+
                 buttonAction: function() {
-                    console.debug("hello world")
+                    console.debug("sending signal run_signal()")
+                    actions.run_signal()
                 }
             }
 
             Button {
+
+                objectName: "update_osu"
+
                 id: update
                 color: "#eeaa00"
-
                 buttonText: "Check Updates"
+
+                buttonAction: function() {
+                    console.debug("sending signal update_signal()")
+                    actions.update_signal()
+                }
 
             }
 

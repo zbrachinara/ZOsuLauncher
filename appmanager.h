@@ -5,6 +5,8 @@
 #include <rapidjson/document.h>
 #include <experimental/filesystem>
 
+typedef void (*func)(void*, curl_off_t, curl_off_t, curl_off_t, curl_off_t);
+
 class AppManager {
 
 public:
