@@ -7,9 +7,8 @@ Interface::Interface(QQmlApplicationEngine* engine, QObject* parent) : QObject(p
     worker->moveToThread(&interface_thread);
 
     QObject* window = engine->rootObjects().first();
-    QObject* main_view = window->findChild<QObject*>("main_view");
-    QQuickItem* button_bar = main_view->findChild<QQuickItem*>("main_button_bar")->childItems().first();
-    progress_bar = main_view->findChild<QQuickItem*>("progress_bar");
+    QQuickItem* button_bar = window->findChild<QQuickItem*>("main_button_bar")->childItems().first();
+    progress_bar = window->findChild<QQuickItem*>("progress_bar");
 
     qRegisterMetaType<curl_off_t>("curl_off_t");
 
