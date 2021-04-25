@@ -42,7 +42,6 @@ ApplicationWindow {
         source: "osu-resources/osu.Game.Resources/Textures/Icons/Hexacons/settings.png"
 
         fillMode: Image.PreserveAspectFit
-        width: 50
         width: 30
 
         anchors {
@@ -58,40 +57,20 @@ ApplicationWindow {
 
             onClicked: {
                 console.debug("settings button clicked")
+                container.push_settings()
             }
 
         }
     }
 
-    Flickable {
+    // start main content
+
+    ContentContainer {
         id: container
         anchors {
             fill: parent
             topMargin: 200
         }
-
-        contentWidth: width
-        contentHeight: content.height
-
-        flickableDirection: Flickable.VerticalFlick
-        boundsBehavior: Flickable.OvershootBounds
-        maximumFlickVelocity: 1000
-
-        Rectangle {
-
-            color: "gray"
-            border.color: "black"
-            border.width: 2
-
-            id: content
-            anchors.top: parent.top
-            width: parent.parent.width
-            height:1000
-
-            Text {
-                text: "bruh"
-                    left: parent.left
-
     }
 
     // end main content
