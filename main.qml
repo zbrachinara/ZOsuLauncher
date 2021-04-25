@@ -43,6 +43,7 @@ ApplicationWindow {
 
         fillMode: Image.PreserveAspectFit
         width: 50
+        width: 30
 
         anchors {
             right: parent.right
@@ -89,16 +90,11 @@ ApplicationWindow {
 
             Text {
                 text: "bruh"
-                anchors {
-                    bottom: parent.bottom
                     left: parent.left
 
-                }
-            }
-
-        }
-
     }
+
+    // end main content
 
     Rectangle {
         id: scrollbar
@@ -110,19 +106,6 @@ ApplicationWindow {
         color: "black"
         opacity: 0.4
 
-    }
-
-    Rectangle {
-
-        id: button_bar_background
-
-        color: "black"
-        opacity: 0.4
-
-        height: 80
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
     }
 
     Rectangle {
@@ -142,13 +125,11 @@ ApplicationWindow {
             signal run_signal();
             signal update_signal();
 
-            property real space: 5
-
             anchors.fill: parent;
             anchors.margins: space;
             id: actions
 
-            spacing: space
+            spacing: 0
 
             MainButton {
 
@@ -157,6 +138,7 @@ ApplicationWindow {
                 id: launch
                 color: "#6644cc"
                 buttonText: "osu!"
+                space: 5
 
                 buttonAction: function() {
                     console.debug("sending signal run_signal()")
@@ -171,6 +153,7 @@ ApplicationWindow {
                 id: update
                 color: "#eeaa00"
                 buttonText: "Check Updates"
+                space: 5
 
                 buttonAction: function() {
                     console.debug("sending signal update_signal()")

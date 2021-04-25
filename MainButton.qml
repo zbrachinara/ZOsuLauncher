@@ -1,38 +1,64 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 
-Rectangle {
-
-    Layout.fillHeight: true
-    Layout.fillWidth: true
-
-    opacity: 0.9
-    radius: 10
+Item {
 
     property alias buttonText: buttonText.text
     property var buttonAction: function() {
         console.log("No action specified")
     }
+    property real space
+    property alias back_opacity: background.opacity
+    property alias front_opacity: body.opacity
+    property alias color: body.color
 
-    Text {
-        id: buttonText
+    Layout.fillHeight: true
+    Layout.fillWidth: true
 
-        color: "white"
-        font.family: "Aller"
-        font.bold: true
-        font.pointSize: 20
+    Rectangle {
+        id: background
+        opacity: 0.4
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.fill: parent
+        color: "black"
     }
 
-    MouseArea {
-        id: buttonArea
-        anchors.fill: parent
+    Rectangle {
 
-        onClicked: {
-            parent.buttonAction()
+        anchors {
+            fill: parent
+            leftMargin: space
+            rightMargin: space
+            topMargin: space
+            bottomMargin: space
         }
+
+        id: body
+
+        opacity: 0.9
+        radius: 10
+
+        Text {
+            id: buttonText
+
+            color: "white"
+            font.family: "Aller"
+            font.bold: true
+            font.pointSize: 20
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        MouseArea {
+            id: buttonArea
+            anchors.fill: parent
+
+            onClicked: {
+                buttonAction()
+            }
+        }
+
     }
 
 }
