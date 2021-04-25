@@ -67,7 +67,7 @@ Flickable {
 
             MainButton {
 
-                id: update
+                id: back_button
                 color: "#eeaa00"
                 buttonText: "Back"
                 height: 40
@@ -83,6 +83,28 @@ Flickable {
                 buttonAction: function() {
                     stack.pop()
                 }
+
+            }
+
+            Text {
+
+                anchors {
+                    top: back_button.bottom
+                    right: parent.right
+                    left: parent.left
+
+                    topMargin: 50
+                }
+
+                text: "
+Thanks to ppy/osu-resources for backgrounds and icons
+
+Also thanks to Qt for UI platform
+
+This is 100% a work in progress
+
+"
+                horizontalAlignment: Text.AlignHCenter
 
             }
 
