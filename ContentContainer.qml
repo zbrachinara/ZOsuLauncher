@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
+import QtWebEngine 1.8
 
 Flickable {
 
@@ -16,10 +17,6 @@ Flickable {
         stack.push(settings_top)
     }
 
-    function push(x) {
-        stack.push(x)
-    }
-
     StackView {
         id: stack
 
@@ -31,27 +28,53 @@ Flickable {
 
     Component {
         id: changelog
-        Rectangle {
 
-            color: "gray"
-            border.color: "black"
-            border.width: 2
+        Rectangle {
 
             id: content
             anchors.top: parent.top
             width: parent.width
-            height:1000
+            height: 1000
 
-            Text {
-                text: "bruh"
-                anchors {
-                    bottom: parent.bottom
-                    left: parent.left
+//            settings.showScrollBars: false
+//            url: "https://osu.ppy.sh/home/changelog/lazer"
 
+//            onContentsSizeChanged: {
+//                content.height = contentsSize.height + 2
+//            }
+
+//            MouseArea {
+//                anchors.fill: parent
+
+//                preventStealing: true
+//                hoverEnabled: true
+//                enabled: true
+//                onWheel: {
+//                    wheel.accepted = false
+//                }
+//            }
+
+            WebEngineView {
+                id: webview
+
+                anchors.fill: parent
+                focus: false
+                settings.showScrollBars: false
+                url: "https://osu.ppy.sh/home/changelog/lazer"
+
+                onContentsSizeChanged: {
+                    content.height = contentsSize.height
                 }
             }
 
+//            Rectangle {
+//                opacity: 0.5
+//                anchors.fill: parent
+//                focus: true
+//            }
+
         }
+
     }
 
     Component {

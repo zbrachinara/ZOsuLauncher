@@ -1,5 +1,6 @@
 QT += \
-    quick
+    quick \
+    webengine
 
 CONFIG += \
     c++11 \

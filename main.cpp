@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QThread>
+#include <QtWebEngine/QtWebEngine>
 
 #include <curl/curl.h>
 
@@ -14,6 +15,8 @@ int main(int argc, char *argv[])
 #endif
 
     curl_global_init(CURL_GLOBAL_ALL);
+
+    QtWebEngine::initialize();
 
     QGuiApplication app(argc, argv);
 
