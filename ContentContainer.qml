@@ -36,13 +36,6 @@ Flickable {
             width: parent.width
             height: 1000
 
-//            settings.showScrollBars: false
-//            url: "https://osu.ppy.sh/home/changelog/lazer"
-
-//            onContentsSizeChanged: {
-//                content.height = contentsSize.height + 2
-//            }
-
 //            MouseArea {
 //                anchors.fill: parent
 
@@ -59,6 +52,7 @@ Flickable {
 
                 anchors.fill: parent
                 focus: false
+                activeFocusOnPress: false
                 settings.showScrollBars: false
                 url: "https://osu.ppy.sh/home/changelog/lazer"
 
@@ -66,13 +60,6 @@ Flickable {
                     content.height = contentsSize.height
                 }
             }
-
-//            Rectangle {
-//                opacity: 0.5
-//                anchors.fill: parent
-//                focus: true
-//            }
-
         }
 
     }
