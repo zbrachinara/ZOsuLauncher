@@ -36,29 +36,31 @@ Flickable {
             width: parent.width
             height: 1000
 
-//            MouseArea {
-//                anchors.fill: parent
-
-//                preventStealing: true
-//                hoverEnabled: true
-//                enabled: true
-//                onWheel: {
-//                    wheel.accepted = false
-//                }
-//            }
-
             WebEngineView {
                 id: webview
 
+//                anchors {
+//                    left: parent.left
+//                    right: parent.right
+//                    top: buffer.bottom
+//                }
                 anchors.fill: parent
+
                 focus: false
                 activeFocusOnPress: false
                 settings.showScrollBars: false
                 url: "https://osu.ppy.sh/home/changelog/lazer"
+                zoomFactor: 0.9
 
                 onContentsSizeChanged: {
                     content.height = contentsSize.height
                 }
+
+            }
+
+            Rectangle {
+                anchors.fill: parent
+                opacity: 0
             }
         }
 
