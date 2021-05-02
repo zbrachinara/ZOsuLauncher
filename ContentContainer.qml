@@ -110,8 +110,9 @@ Flickable {
 
                 text: "
 Thanks to ppy/osu-resources for backgrounds and icons
+(under Creative Commons: https://github.com/ppy/osu-resources)
 
-Also thanks to Qt for UI platform
+Also thanks to Qt for UI platform (https://www.qt.io)
 
 This is 100% a work in progress
 
