@@ -83,13 +83,14 @@ Flickable {
                 color: "#eeaa00"
                 buttonText: "Back"
                 height: 40
-                space: 5
-                back_opacity: 0.2
 
                 anchors {
                     top: parent.top
                     left: parent.left
                     right: parent.right
+                    leftMargin: 5
+                    rightMargin: 5
+                    topMargin: 5
                 }
 
                 buttonAction: function() {
