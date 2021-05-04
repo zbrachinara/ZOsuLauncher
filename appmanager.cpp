@@ -70,7 +70,8 @@ bool AppManager::check_updates(void) {
 
     string latest_version = github_latest["tag_name"].GetString();
     string current_version = config["version"].GetString();
-    if (latest_version.compare(current_version) != 0) {
+    string exec_path = w_directory + "/osu.AppImage";
+    if (latest_version.compare(current_version) != 0 || !fs::exists(exec_path)) {
          update();
     }
 
